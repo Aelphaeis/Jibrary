@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Jibrary.Data
 {
-    interface IQueryResultTuple 
+    public interface IQueryResultTuple 
     {
-        public Object[] Values { get; set; }
+        IQueryResult ResultSet { get; set; }
+        Object[] Values { get; set; }
     }
 }

@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Jibrary.Data
 {
-    interface IQueryResultColumn
+    public interface IQueryResultColumn
     {
-        public String ColumnName { get; set; }
-        public String DataType { get; set; }
+        String ColumnName { get; set; }
     }
 }
