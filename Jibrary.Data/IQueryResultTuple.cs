@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Jibrary.Diagnostics
+namespace Jibrary.Data
 {
-    public class Class1
+    interface IQueryResultTuple 
     {
+        public Object[] Values { get; set; }
     }
 }

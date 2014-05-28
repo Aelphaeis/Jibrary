@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FE7CF7A6-9DF5-4D5E-BA06-6A94A3C20A58}</ProjectGuid>
+    <ProjectGuid>{CE9D26D1-11CE-4FF9-997D-A071B4CA14DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jibrary.Diagnostics</RootNamespace>
-    <AssemblyName>Jibrary.Diagnostics</AssemblyName>
+    <RootNamespace>Jibrary.Data</RootNamespace>
+    <AssemblyName>Jibrary.Data</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,6 +38,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDbConnectionExtensions.cs" />
+    <Compile Include="IQueryResult.cs" />
+    <Compile Include="IQueryResultColumn.cs" />
+    <Compile Include="IQueryResultTuple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
