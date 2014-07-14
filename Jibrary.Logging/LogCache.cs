@@ -90,11 +90,17 @@ namespace Jibrary.Logging
             ValidateState();
             logs = new SortedList<DateTime, Log>();
         }
+        protected virtual void Dispose(bool disposing)
+        {
+            if(disposing)
+                logManager.DisposeLogCache(this);
 
+            IsDisposed = true;
+        }
         public void Dispose()
         {
-            logManager.DisposeLogCache(this);
-            IsDisposed = true;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         void ValidateState()

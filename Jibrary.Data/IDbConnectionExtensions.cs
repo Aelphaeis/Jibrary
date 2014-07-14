@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Data;
-
+using System.Diagnostics.CodeAnalysis;
 namespace Jibrary.Data
 {
     public static class IDbConnectionExtensions
     {
 
+        //This is not suppose to allow end user input. It is for internal use only
+        [SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
         public static IDbCommand CreateCommand(this IDbConnection Conn, string CommandText, params object[] Parameters)
         {
             var Command = Conn.CreateCommand();

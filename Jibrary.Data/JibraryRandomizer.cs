@@ -8,11 +8,12 @@ namespace Jibrary.Data
 {
     public class JibraryRandomizer : IDisposable
     {
-        
+        bool disposed;
         RandomNumberGenerator rng;
 
         public JibraryRandomizer()
         {
+            disposed = false;
             rng = new RNGCryptoServiceProvider();
         }
         public JibraryRandomizer(RandomNumberGenerator NumberGenerator)
@@ -91,9 +92,19 @@ namespace Jibrary.Data
             return null;
         }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+                if (rng != null) 
+                    rng.Dispose();
+            rng = null;
+            disposed = true;
+
+        }
         public void Dispose()
         {
-            rng.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

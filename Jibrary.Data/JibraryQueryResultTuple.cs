@@ -24,13 +24,14 @@ namespace Jibrary.Data
             }
         }
 
-        
-        public virtual List<Object> Values { get; set; }
+
+        public virtual List<Object> Values { get { return values; } set { values = value; } }
+        public List<Object> values;
 
         public JibraryQueryResultTuple()
         {
             parent = null;
-            Values = new List<Object>();
+            values = new List<Object>();
         }
     }
 }

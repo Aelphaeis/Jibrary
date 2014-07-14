@@ -9,19 +9,19 @@ namespace Jibrary.Logging
             set;
         }
 
-        public virtual String Entry
+        public String Entry
         {
             get;
             set;
         }
 
-        public virtual Boolean IsError
+        public Boolean IsError
         {
             get;
             set;
         }
 
-        public virtual LogPriority Priority
+        public LogPriority Priority
         {
             get;
             set;

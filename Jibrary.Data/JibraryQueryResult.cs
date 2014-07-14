@@ -36,25 +36,28 @@ namespace Jibrary.Data
                 return this[GetColumnIndex(ColumnName)];
             }
         }
-        public virtual List<JibraryQueryResultColumn> Columns { get; set; }
-        public virtual List<JibraryQueryResultTuple> Tuples { get; set; }
+        public virtual List<JibraryQueryResultColumn> Columns { get { return columns; } set { columns = value; } }
+        public virtual List<JibraryQueryResultTuple> Tuples { get { return tuples; } set { tuples = value; } }
+
+        List<JibraryQueryResultColumn> columns;
+        List<JibraryQueryResultTuple> tuples;
 
         #region Constructors
         public JibraryQueryResult()
         {
-            this.Columns = new List<JibraryQueryResultColumn>();
-            this.Tuples = new List<JibraryQueryResultTuple>();
+            this.columns = new List<JibraryQueryResultColumn>();
+            this.tuples = new List<JibraryQueryResultTuple>();
         }
 
         public JibraryQueryResult(IDataReader r) : this()
         {
             var schemaTable = r.GetSchemaTable();
             foreach (var column in GetColumnData(schemaTable))
-                Columns.Add(column);
+                columns.Add(column);
 
-            for (var Curr = new JibraryQueryResultTuple() { parent = this }; r.Read(); Tuples.Add(Curr), Curr = new JibraryQueryResultTuple() { parent = this })
-                for (int i = 0; i < Columns.Count; i++)
-                    Curr.Values.Add((r[Columns[i].ColumnName] != DBNull.Value) ? r[Columns[i].ColumnName] : null);
+            for (var Curr = new JibraryQueryResultTuple() { parent = this }; r.Read(); tuples.Add(Curr), Curr = new JibraryQueryResultTuple() { parent = this })
+                for (int i = 0; i < columns.Count; i++)
+                    Curr.Values.Add((r[columns[i].ColumnName] != DBNull.Value) ? r[columns[i].ColumnName] : null);
         }
         #endregion
 
