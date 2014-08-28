@@ -8,9 +8,9 @@ using System.Xml.Serialization;
 
 namespace Jibrary.Data
 {
-    public class JibraryQueryResultTuple : IJibraryQueryResultTuple
+    public class QueryResultTuple : IQueryResultTuple
     {
-        internal JibraryQueryResult parent;
+        internal QueryResult parent;
          
         public virtual Object this[int i]
         {
@@ -28,7 +28,7 @@ namespace Jibrary.Data
         public virtual List<Object> Values { get { return values; } set { values = value; } }
         public List<Object> values;
 
-        public JibraryQueryResultTuple()
+        public QueryResultTuple()
         {
             parent = null;
             values = new List<Object>();

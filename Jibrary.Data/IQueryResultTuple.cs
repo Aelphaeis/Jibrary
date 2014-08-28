@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Jibrary.Data
 {
-    public interface IJibraryQueryResultTuple  
+    public interface IQueryResultTuple  
     {
         Object this[int i] { get; set; }
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Data;
 namespace Jibrary.Data
 {
-    public class JibraryQueryResultColumn : IJibraryQueryResultColumn
+    public class QueryResultColumn : IQueryResultColumn
     {
         public virtual string ColumnName { get; set; }
         public virtual int? ColumnSequence { get; set; }
@@ -21,8 +21,8 @@ namespace Jibrary.Data
         public virtual bool? IsUnique { get; set; }
         public virtual string Description { get; set; }
 
-        public JibraryQueryResultColumn() { }
-        public JibraryQueryResultColumn(DataRow dataRow)
+        public QueryResultColumn() { }
+        public QueryResultColumn(DataRow dataRow)
         {
             ColumnName = (dataRow[0] != DBNull.Value) ? Convert.ToString(dataRow[0]) : string.Empty;
             IsUnique = (dataRow[5] != DBNull.Value) ? Convert.ToBoolean(dataRow[5]) : (bool?)null;

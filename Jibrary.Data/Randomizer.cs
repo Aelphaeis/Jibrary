@@ -6,17 +6,17 @@ using System.Text;
 
 namespace Jibrary.Data
 {
-    public class JibraryRandomizer : IDisposable
+    public class Randomizer : IDisposable
     {
         bool disposed;
         RandomNumberGenerator rng;
 
-        public JibraryRandomizer()
+        public Randomizer()
         {
             disposed = false;
             rng = new RNGCryptoServiceProvider();
         }
-        public JibraryRandomizer(RandomNumberGenerator NumberGenerator)
+        public Randomizer(RandomNumberGenerator NumberGenerator)
         {
             rng = NumberGenerator;
         }

@@ -5,7 +5,7 @@ using System.Linq;
 namespace Jibrary.Data
 {
     
-    public class JibraryQueryResult : IJibraryQueryResult<JibraryQueryResultColumn, JibraryQueryResultTuple>
+    public class QueryResult : IQueryResult<QueryResultColumn, QueryResultTuple>
     {
         public Object this[Int32 ColumnIndex, Int32 RowIndex]
         {
@@ -36,26 +36,26 @@ namespace Jibrary.Data
                 return this[GetColumnIndex(ColumnName)];
             }
         }
-        public virtual List<JibraryQueryResultColumn> Columns { get { return columns; } set { columns = value; } }
-        public virtual List<JibraryQueryResultTuple> Tuples { get { return tuples; } set { tuples = value; } }
+        public virtual List<QueryResultColumn> Columns { get { return columns; } set { columns = value; } }
+        public virtual List<QueryResultTuple> Tuples { get { return tuples; } set { tuples = value; } }
 
-        List<JibraryQueryResultColumn> columns;
-        List<JibraryQueryResultTuple> tuples;
+        List<QueryResultColumn> columns;
+        List<QueryResultTuple> tuples;
 
         #region Constructors
-        public JibraryQueryResult()
+        public QueryResult()
         {
-            this.columns = new List<JibraryQueryResultColumn>();
-            this.tuples = new List<JibraryQueryResultTuple>();
+            this.columns = new List<QueryResultColumn>();
+            this.tuples = new List<QueryResultTuple>();
         }
 
-        public JibraryQueryResult(IDataReader r) : this()
+        public QueryResult(IDataReader r) : this()
         {
             var schemaTable = r.GetSchemaTable();
             foreach (var column in GetColumnData(schemaTable))
                 columns.Add(column);
 
-            for (var Curr = new JibraryQueryResultTuple() { parent = this }; r.Read(); tuples.Add(Curr), Curr = new JibraryQueryResultTuple() { parent = this })
+            for (var Curr = new QueryResultTuple() { parent = this }; r.Read(); tuples.Add(Curr), Curr = new QueryResultTuple() { parent = this })
                 for (int i = 0; i < columns.Count; i++)
                     Curr.Values.Add((r[columns[i].ColumnName] != DBNull.Value) ? r[columns[i].ColumnName] : null);
         }
@@ -67,10 +67,10 @@ namespace Jibrary.Data
             return Columns.IndexOf(Columns.First((p) => p.ColumnName.Equals(ColumnName, StringComparison.OrdinalIgnoreCase)));
         }
 
-        IEnumerable<JibraryQueryResultColumn> GetColumnData(DataTable dataTable)
+        IEnumerable<QueryResultColumn> GetColumnData(DataTable dataTable)
         {
             for (int i = 0; i < dataTable.Rows.Count; i++)
-                yield return new JibraryQueryResultColumn((DataRow)dataTable.Rows[i]);
+                yield return new QueryResultColumn((DataRow)dataTable.Rows[i]);
         }
     }
 }

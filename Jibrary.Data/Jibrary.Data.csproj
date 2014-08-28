@@ -42,15 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDbConnectionExtensions.cs" />
-    <Compile Include="IJibraryQueryResult.cs" />
-    <Compile Include="IJibraryQueryResultColumn.cs" />
-    <Compile Include="IJibraryQueryResultTuple.cs" />
+    <Compile Include="IQueryResult.cs" />
+    <Compile Include="IQueryResultColumn.cs" />
+    <Compile Include="IQueryResultTuple.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IRepositoryEntry.cs" />
-    <Compile Include="JibraryQueryResult.cs" />
-    <Compile Include="JibraryQueryResultColumn.cs" />
-    <Compile Include="JibraryQueryResultTuple.cs" />
-    <Compile Include="JibraryRandomizer.cs" />
+    <Compile Include="QueryResult.cs" />
+    <Compile Include="QueryResultColumn.cs" />
+    <Compile Include="QueryResultTuple.cs" />
+    <Compile Include="Randomizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryEntryBase.cs" />
     <Compile Include="RepositoryOperationEventArgs.cs" />

@@ -1,7 +1,7 @@
 ﻿
 namespace Jibrary.Data
 {
-    public interface IJibraryQueryResultColumn
+    public interface IQueryResultColumn
     {
         string ColumnName { get; set; }
     }

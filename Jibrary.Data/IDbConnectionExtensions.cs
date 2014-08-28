@@ -24,11 +24,11 @@ namespace Jibrary.Data
             return Param;
         }
 
-        public static JibraryQueryResult Query(this IDbConnection conn, String CommandText, params object[] Arguments)
+        public static QueryResult Query(this IDbConnection conn, String CommandText, params object[] Arguments)
         {
             using (var Comm = conn.CreateCommand(CommandText, Arguments))
             using (var reader = Comm.ExecuteReader(CommandBehavior.KeyInfo))
-                return new JibraryQueryResult(reader);
+                return new QueryResult(reader);
         }
         public static int NonQuery(this IDbConnection conn, String CommandText, params object[] Arguments)
         {

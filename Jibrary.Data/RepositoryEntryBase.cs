@@ -6,7 +6,7 @@ namespace Jibrary.Data
     public class RepositoryEntryBase
     {
 
-        public static RepositoryEntryBase FromPlexQueryResultTuple( RepositoryEntryBase reb, JibraryQueryResultTuple plexTuple)
+        public static RepositoryEntryBase FromPlexQueryResultTuple( RepositoryEntryBase reb, QueryResultTuple plexTuple)
         {
 
             if (plexTuple.parent == null)
@@ -14,7 +14,7 @@ namespace Jibrary.Data
 
             Type type = reb.GetType();
             var pInfo = type.GetProperties();
-            JibraryQueryResult result = plexTuple.parent;
+            QueryResult result = plexTuple.parent;
 
             foreach (var p in pInfo)
             {
@@ -36,7 +36,7 @@ namespace Jibrary.Data
         {
             primaryKeys = new List<String>();
         }
-        public RepositoryEntryBase(JibraryQueryResultTuple plexTuple) : this()
+        public RepositoryEntryBase(QueryResultTuple plexTuple) : this()
         {
             FromPlexQueryResultTuple(this, plexTuple);
         }
