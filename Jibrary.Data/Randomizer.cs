@@ -8,16 +8,20 @@ namespace Jibrary.Data
 {
     public class Randomizer : IDisposable
     {
-        bool disposed;
+        public Boolean Disposed
+        {
+            get;
+            private set;
+        }
         RandomNumberGenerator rng;
-
+        public const String DefaultCharacterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxz!@#$%^&*()_+=-\\][{}|;',./<>?~`";
         public Randomizer()
         {
-            disposed = false;
             rng = new RNGCryptoServiceProvider();
         }
         public Randomizer(RandomNumberGenerator NumberGenerator)
         {
+            Disposed = false;
             rng = NumberGenerator;
         }
 
@@ -27,7 +31,7 @@ namespace Jibrary.Data
             {
                 if (typeof(Int32) == (Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType))
                     property.SetValue(obj, GetInt32());
-                if (typeof(string) == (Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType))
+                if (typeof(String) == (Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType))
                     property.SetValue(obj, GetString());
                 if (typeof(DateTime) == (Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType))
                     property.SetValue(obj, GetDateTime());
@@ -39,8 +43,8 @@ namespace Jibrary.Data
             foreach (var field in obj.GetType().GetFields())
             {
                 if (typeof(Int32) == (Nullable.GetUnderlyingType(field.FieldType) ?? field.FieldType))
-                    field.SetValue(obj, GetInt32()); 
-                if (typeof(string) == (Nullable.GetUnderlyingType(field.FieldType) ?? field.FieldType))
+                    field.SetValue(obj, GetInt32());
+                if (typeof(String) == (Nullable.GetUnderlyingType(field.FieldType) ?? field.FieldType))
                     field.SetValue(obj, GetString());
                 if (typeof(DateTime) == (Nullable.GetUnderlyingType(field.FieldType) ?? field.FieldType))
                     field.SetValue(obj, GetDateTime());
@@ -59,10 +63,28 @@ namespace Jibrary.Data
             return BitConverter.ToInt32(buffer, 0);
         }
 
-        public String GetString(int size = 8)
+        public String GetString()
         {
-            Byte[] buffer = GetBytes(size);
-            return Encoding.Default.GetString(buffer);
+            return GetString(8);
+        }
+
+        public String GetString(int size)
+        {
+            return GetString(size, DefaultCharacterSet);
+        }
+        
+        public String GetString(int size, String CharacterSet)
+        {
+            if (String.IsNullOrEmpty(CharacterSet))
+                throw new ArgumentException("CharacterSet cannot be Null or Empty");
+            if(size <= 0)
+                throw new ArgumentException("Size must be a positive integer");
+
+            String RandomString = String.Empty;
+            for (int i = 0; i < size; i++)
+                RandomString += CharacterSet[Math.Abs(GetInt32() % CharacterSet.Length)];
+
+            return RandomString;
         }
 
         public DateTime GetDateTime()
@@ -86,20 +108,13 @@ namespace Jibrary.Data
             rng.GetBytes(buffer);
             return buffer;
         }
-
-        static object GetType(String Object)
+        
+        protected virtual void Dispose(Boolean Disposing)
         {
-            return null;
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-                if (rng != null) 
+            if(!Disposed)
+                if (Disposing)
                     rng.Dispose();
-            rng = null;
-            disposed = true;
-
+            Disposed = true;
         }
         public void Dispose()
         {

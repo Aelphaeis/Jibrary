@@ -24,7 +24,6 @@ namespace Jibrary.Data
             }
         }
 
-
         public virtual List<Object> Values { get { return values; } set { values = value; } }
         public List<Object> values;
 
