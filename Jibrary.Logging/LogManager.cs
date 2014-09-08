@@ -185,7 +185,6 @@ namespace Jibrary.Logging
             caches = new List<LogCache>();
 
             CacheDiscard += Merge;
-            //LogAdded += InsertLogIntoCollection;
         }
 
         void Merge(object sender, EventArgs e)
@@ -197,15 +196,6 @@ namespace Jibrary.Logging
             }
         }
 
-        //void InsertLogIntoCollection(object sender, LogManagerEventArgs e)
-        //{
-        //    try {
-        //        Logs.Add(e.Log.Date, e.Log);
-        //    }
-        //    catch(ArgumentException) {
-        //        e.Log.Date = e.Log.Date.AddTicks(1);
-        //        Add(e.Log);
-        //    }
-        //}
+
     }
 }
