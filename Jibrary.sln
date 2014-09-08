@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Data", "Jibrary.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Diagnostics.Tests", "Jibrary.Diagnostics.Tests\Jibrary.Diagnostics.Tests.csproj", "{5AA52817-0007-458D-AEFA-3C3AEEC6C51F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Miscellenous", "Jibrary.Miscellenous\Jibrary.Miscellenous.csproj", "{A667814F-EAB9-4DBD-A37E-9ED18018E49C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Miscellenous.Tests", "Jibrary.Miscellenous.Tests\Jibrary.Miscellenous.Tests.csproj", "{9C22A8D6-00EA-4CEF-9221-8F9C92085CED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{5AA52817-0007-458D-AEFA-3C3AEEC6C51F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AA52817-0007-458D-AEFA-3C3AEEC6C51F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AA52817-0007-458D-AEFA-3C3AEEC6C51F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A667814F-EAB9-4DBD-A37E-9ED18018E49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A667814F-EAB9-4DBD-A37E-9ED18018E49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A667814F-EAB9-4DBD-A37E-9ED18018E49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A667814F-EAB9-4DBD-A37E-9ED18018E49C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C22A8D6-00EA-4CEF-9221-8F9C92085CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C22A8D6-00EA-4CEF-9221-8F9C92085CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C22A8D6-00EA-4CEF-9221-8F9C92085CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C22A8D6-00EA-4CEF-9221-8F9C92085CED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
