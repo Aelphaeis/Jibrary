@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Data;
+using System.Reflection;
 using System.Collections.Generic;
 
 namespace Jibrary.Data
@@ -8,7 +11,6 @@ namespace Jibrary.Data
 
         public static RepositoryEntryBase FromPlexQueryResultTuple( RepositoryEntryBase reb, QueryResultTuple plexTuple)
         {
-
             if (plexTuple.parent == null)
                 throw new NotSupportedException("This Operation is Not supported by this PlexTuple.");
 
@@ -30,6 +32,19 @@ namespace Jibrary.Data
             return reb;
         }
 
+        public static Boolean AreEqual(RepositoryEntryBase a, RepositoryEntryBase b)
+        {
+            var TypeA = a.GetType();
+            if (TypeA != b.GetType())
+                return false;
+
+            var keys = a.GetPrimaryKeys();
+            foreach (var property in TypeA.GetProperties().Where(p => keys.Any(q => p.Name == q)))
+                if (!property.GetValue(a).Equals(property.GetValue(b)))
+                    return false;
+            return true;
+        }
+
         protected IList<String> primaryKeys;
 
         public RepositoryEntryBase() 
@@ -44,6 +59,6 @@ namespace Jibrary.Data
         public IList<String> GetPrimaryKeys()
         {
             return primaryKeys;
-        }
+        } 
     }
 }
