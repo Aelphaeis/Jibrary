@@ -11,8 +11,7 @@ namespace Jibrary.Diagnostics
         private Stopwatch timer;
 
         public virtual string Name { get; set; }
-        public virtual long Duration { get; private set; }
-
+        public virtual long Duration { get { return timer.ElapsedTicks; } }
         public TimeTask()
         {
             timer = new Stopwatch();
@@ -26,7 +25,6 @@ namespace Jibrary.Diagnostics
         public virtual void Stop()
         {
             timer.Stop();
-            Duration = timer.ElapsedTicks;
         }
 
         public virtual long GetMilliseconds()
