@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Diagnostics;
+<<<<<<< HEAD
+
+namespace Jibrary.Diagnostics
+{
+    public class TimeTask
+    { 
+        private Stopwatch timer;
+
+        public virtual string Name { get; set; }
+        public virtual long Duration { get { return timer.ElapsedTicks; } }
+=======
+namespace Jibrary.Diagnostics
+{
+    public class TimeTask
+    {
+        private Stopwatch timer;
+
+        public string Name { get; set; }
+        public long Duration { get; private set; }
+
+>>>>>>> 63debb3b2eb3c1564262ad4fbab78e4663ccafe6
+        public TimeTask()
+        {
+            timer = new Stopwatch();
+        }
+
+<<<<<<< HEAD
+        public virtual void Start()
+=======
+        public void Start()
+>>>>>>> 63debb3b2eb3c1564262ad4fbab78e4663ccafe6
+        {
+            timer.Start();
+        }
+
+<<<<<<< HEAD
+        public virtual void Stop()
+        {
+            timer.Stop();
+        }
+
+        public virtual long GetMilliseconds()
+=======
+        public void Stop()
+        {
+            timer.Stop();
+            Duration = timer.ElapsedTicks;
+        }
+
+        public long GetMilliseconds()
+>>>>>>> 63debb3b2eb3c1564262ad4fbab78e4663ccafe6
+        {
+            return timer.ElapsedMilliseconds;
+        }
+
+        public override string ToString()
+        {
+            return timer.ElapsedTicks.ToString();
+        }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 63debb3b2eb3c1564262ad4fbab78e4663ccafe6
+    }
+}

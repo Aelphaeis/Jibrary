@@ -2,18 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+<<<<<<< HEAD
 using System.IO;
+=======
+
+>>>>>>> 63debb3b2eb3c1564262ad4fbab78e4663ccafe6
 namespace Jibrary.Diagnostics
 {
     public class TimeAnalyst
     {
+<<<<<<< HEAD
+        Dictionary<String, TimeTask> tasks;
+
         public IEnumerable<TimeTask> Tasks
         {
             get { return tasks.Values; }
         }
 
+=======
+        public IEnumerable<TimeTask> Tasks
+        {
+            get
+            {
+                return tasks.Values;
+
+            }
+        }
+
         Dictionary<String, TimeTask> tasks;
 
+>>>>>>> 63debb3b2eb3c1564262ad4fbab78e4663ccafe6
         public TimeAnalyst()
         {
             tasks = new Dictionary<String, TimeTask>();
@@ -21,6 +39,7 @@ namespace Jibrary.Diagnostics
 
         #region CRUD Operations
         //Create
+<<<<<<< HEAD
         public void CreateTask(String name)
         {
             tasks.Add(name, new TimeTask() { Name = name });
@@ -49,11 +68,42 @@ namespace Jibrary.Diagnostics
         public void RemoveTask(String name)
         {
             tasks.Remove(name);
+=======
+        public void CreateTask(String n)
+        {
+            tasks.Add(n, new TimeTask() { Name = n });
+        }
+
+        //Read
+        public TimeTask GetTask(String n)
+        {
+            return tasks[n];
+        }
+
+        //Update
+        public void StartTask(String n)
+        {
+            if (!tasks.ContainsKey(n))
+                CreateTask(n);
+            tasks[n].Start();
+        }
+
+        public void StopTask(String n)
+        {
+            tasks[n].Stop();
+        }
+
+        //delete
+        public void RemoveTask(String n)
+        {
+            tasks.Remove(n);
+>>>>>>> 63debb3b2eb3c1564262ad4fbab78e4663ccafe6
         }
         #endregion
 
         public override string ToString()
         {
+<<<<<<< HEAD
             //init
             Int32 spacing = 25;
             String[] headers = new String[] { "Name", "Ticks", "Milliseconds" };
@@ -66,6 +116,22 @@ namespace Jibrary.Diagnostics
                 output.AppendFormat(outputFormat, task.Name, task.Duration, task.GetMilliseconds(), Environment.NewLine);
 
             //return output 
+=======
+            var output = new StringBuilder();
+            var headers = new String[] { "Name", "Ticks", "Time (ms)" };
+            int h1 = headers[0].Length, h2 = headers[1].Length, h3 = headers[2].Length, n = 25;
+            output.AppendFormat("{0,-" + (n) + "}{1,-" + (n ) + "}{2,-" + (n ) + "}{3}", headers[0], headers[1], headers[2], Environment.NewLine);
+
+            foreach(var task in tasks.Values)
+            {
+                h1 = task.Name.Length;
+                h2 = task.Duration.ToString().Length;
+                h3 = task.GetMilliseconds().ToString().Length;
+
+                output.AppendFormat("{0," + (-n) + "}{1," + (-n) + "}{2," + (-n) + "}{3}",
+                    task.Name, task.Duration, task.GetMilliseconds(), Environment.NewLine);
+            }
+>>>>>>> 63debb3b2eb3c1564262ad4fbab78e4663ccafe6
             return output.ToString();
         }
     }

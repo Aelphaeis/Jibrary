@@ -39,8 +39,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
+    <Compile Include="TimeTask.cs" />
+    <Compile Include="TimeAnalyst.cs" />
+=======
     <Compile Include="TimeAnalyst.cs" />
     <Compile Include="TimeTask.cs" />
+>>>>>>> 63debb3b2eb3c1564262ad4fbab78e4663ccafe6
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
