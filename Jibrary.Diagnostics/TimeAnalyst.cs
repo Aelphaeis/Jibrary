@@ -55,16 +55,15 @@ namespace Jibrary.Diagnostics
         public override string ToString()
         {
             //init
+            Int32 spacing = 25;
             String[] headers = new String[] { "Name", "Ticks", "Milliseconds" };
             StringBuilder output = new StringBuilder(base.ToString() + Environment.NewLine);
-            output.AppendFormat("{0, -" + (25 - headers[0].Length) + "}{1, -" + (25 - headers[1].Length) + "}{2, -" + (25 - headers[2].Length)+"}{3}", headers[0], headers[1], headers[2], Environment.NewLine);
+            String outputFormat = "{0, -" + spacing + "}{1, -" + spacing + "}{2, -" + spacing +"}{3}";
+            output.AppendFormat(outputFormat, headers[0], headers[1], headers[2], Environment.NewLine);
+            
             //output list
             foreach (TimeTask task in tasks.Values)
-                output.AppendFormat("{0, -" + (25 - task.Name.Length) + "}{1, -" + (25 - task.Duration.ToString().Length) + "}{2, -" + (25 - task.GetMilliseconds().ToString().Length) + "}{3}", 
-                    task.Name, 
-                    task.Duration, 
-                    task.GetMilliseconds(), 
-                    Environment.NewLine);
+                output.AppendFormat(outputFormat, task.Name, task.Duration, task.GetMilliseconds(), Environment.NewLine);
 
             //return output 
             return output.ToString();
