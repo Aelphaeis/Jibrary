@@ -8,13 +8,13 @@ namespace Jibrary.Data
 {
     public class Randomizer : IDisposable
     {
+        public const String DefaultCharacterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxz!@#$%^&*()_+=-\\][{}|;',./<>?~`";
         public Boolean Disposed
         {
             get;
             private set;
         }
         RandomNumberGenerator rng;
-        public const String DefaultCharacterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxz!@#$%^&*()_+=-\\][{}|;',./<>?~`";
         public Randomizer()
         {
             rng = new RNGCryptoServiceProvider();
