@@ -3,14 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Jibrary.Miscellaneous
 {
-    public sealed class Singleton<T> where T : new()
+    public sealed class Singleton<T>
     {
         public static T Instance { get { return instance; } }
-        static T instance = new T();
+        internal static T instance;
+        static bool instantiated;
 
+        /// <summary>
+        /// This will allow classes with default constructors to be instiantated immediately;
+        /// </summary>
+        static Singleton()
+        {
+            //If the class has the default constructor then crate it
+            if (typeof(T).GetConstructor(new Type[0]) != null)
+            { 
+                instance = (T)Activator.CreateInstance(typeof(T));
+                instantiated = true;
+            }
+            //If not the class instance implicitly be default(T)
+        }
+
+        public static T Instantiate(T inst)
+        {
+            if (instantiated)
+                throw new InvalidOperationException("A Singleton may only be Instantiated once");
+
+            instance = inst;
+            instantiated = true;
+            return instance;
+        }
+
+        /// <summary>
+        /// This prevents this called from being Instantiated
+        /// </summary>
         internal Singleton() { }
     }
 }
