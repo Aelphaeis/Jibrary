@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Jibrary.Miscellaneous
 {
-    public class Singleton<T> where T : new()
+    public sealed class Singleton<T> where T : new()
     {
         public static T Instance { get { return instance; } }
         static T instance = new T();
+
+        internal Singleton() { }
     }
 }

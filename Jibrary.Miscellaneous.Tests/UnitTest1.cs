@@ -16,5 +16,10 @@ namespace Jibrary.Miscellaneous.Tests
             Singleton<TimeAnalyst>.Instance.RemoveTask("Hello World");
             Console.WriteLine(Singleton<TimeAnalyst>.Instance);
         }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+        }
     }
 }
