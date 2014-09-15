@@ -10,7 +10,7 @@ namespace Jibrary.Miscellaneous
             using(StringWriter writer = new StringWriter())
             {
                 new XmlSerializer(obj.GetType()).Serialize(writer, obj);
-                return obj.ToString();
+                return writer.ToString();
             }
         }
 
