@@ -1,7 +1,7 @@
 ﻿using System;
 using Jibrary.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using Jibrary.Miscellaneous.Tests.Resources;
 namespace Jibrary.Miscellaneous.Tests
 {
     [TestClass]
@@ -31,6 +31,23 @@ namespace Jibrary.Miscellaneous.Tests
         public void TestMethod3()
         {
             Assert.AreNotEqual(String.Empty, Singleton<String>.Instance);
+        }
+
+        [TestMethod]
+        public void TestMethod4()
+        {
+            Person p = new Person() { Name = "Joseph" };
+            Singleton<Person>.Instantiate(p);
+            Assert.AreEqual(p, Singleton<Person>.Instance);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void TestMethod5()
+        {
+            Person p = new Person() { Name = "Joseph" };
+            Assert.AreNotEqual(p, Singleton<Person>.Instance);
+            Singleton<Person>.Instantiate(p);
         }
     }
 }
