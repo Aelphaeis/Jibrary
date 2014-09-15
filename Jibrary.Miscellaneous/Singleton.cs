@@ -13,16 +13,14 @@ namespace Jibrary.Miscellaneous
         {
             get 
             {
-                if (!instantiated &&( typeof(T).GetConstructor(new Type[0]) != null))
+                if (!instantiated && (typeof(T).IsValueType || typeof(T).GetConstructor(new Type[0]) != null))
                 {
-                    Int32 r = new Int32();
                     instance = (T)Activator.CreateInstance(typeof(T));
                     instantiated = true;
                 }
 
                 if (instantiated)
                     return instance;
-
 
                 throw new InvalidOperationException("Instance has not been instantiated");
             } 

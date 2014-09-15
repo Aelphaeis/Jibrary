@@ -32,7 +32,5 @@ namespace Jibrary.Miscellaneous.Tests
         {
             Assert.AreNotEqual(String.Empty, Singleton<String>.Instance);
         }
-
-
     }
 }
