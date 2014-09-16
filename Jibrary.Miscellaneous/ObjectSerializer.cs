@@ -16,6 +16,7 @@ namespace Jibrary.Miscellaneous
                 return writer.ToString();
             }
         }
+
         public static T Deserialize<T>(String xml)
         {
             using(TextReader reader = new StringReader(xml))
@@ -24,10 +25,12 @@ namespace Jibrary.Miscellaneous
 
         public static String DataContractSerialize(Object obj)
         {
-            using(XmlWriter writer = XmlWriter.Create(new StringBuilder()))
+            using(StringWriter sw = new StringWriter())
+            using (XmlWriter writer = XmlWriter.Create(sw, new XmlWriterSettings { Indent = true }))
             {
                 new DataContractSerializer(obj.GetType()).WriteObject(writer, obj);
-                return writer.ToString();
+                writer.Flush();
+                return sw.ToString();
             }
         }
 

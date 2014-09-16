@@ -2,6 +2,7 @@
 using Jibrary.Miscellaneous;
 using Jibrary.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Jibrary.Miscellaneous.Tests.Resources;
 
 namespace Jibrary.Miscellaneous.Tests
 {
@@ -15,6 +16,11 @@ namespace Jibrary.Miscellaneous.Tests
             Console.WriteLine(Singleton<TimeAnalyst>.Instance);
             Singleton<TimeAnalyst>.Instance.RemoveTask("Hello World");
             Console.WriteLine(Singleton<TimeAnalyst>.Instance);
+        }
+        [TestMethod]
+        public void TestMethod2()
+        {
+            Console.WriteLine(StringSerializer.DataContractSerialize(new Person { Name = "Joseph", Age = 22 }));
         }
     }
 }
