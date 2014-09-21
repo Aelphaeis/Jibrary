@@ -5,6 +5,5 @@ namespace Jibrary.Data.Repositories
 {
     public interface IRepositoryEntry
     {
-        IList<String> GetPrimaryKeys();
     }
 }
