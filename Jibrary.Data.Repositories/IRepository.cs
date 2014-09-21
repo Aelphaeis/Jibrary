@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Jibrary.Data
+namespace Jibrary.Data.Repositories
 {
     /// <summary>
     /// This interface represents a repository which can store all types that Inherit from IRepository that implements the default constructor
