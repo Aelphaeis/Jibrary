@@ -27,13 +27,6 @@ namespace Jibrary.Miscellaneous.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void TestMethod3()
-        {
-            Assert.AreNotEqual(String.Empty, Singleton<String>.Instance);
-        }
-
-        [TestMethod]
         public void TestMethod4()
         {
             Person p = new Person() { Name = "Joseph" };

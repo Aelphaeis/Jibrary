@@ -27,6 +27,7 @@ namespace Jibrary.Logging
             set;
         }
 
+
         public Log()
         {
             Date = DateTime.Now;

@@ -17,13 +17,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Miscellaneous.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Miscellaneous", "Jibrary.Miscellaneous\Jibrary.Miscellaneous.csproj", "{D089A42D-17CC-4F05-9A0B-1A17EEE5103F}"
 EndProject
-<<<<<<< Updated upstream
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Data.Tests", "Jibrary.Data.Tests\Jibrary.Data.Tests.csproj", "{B4FAD4F0-6671-442D-9B64-C42794E84936}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Data.Repositories", "Jibrary.Data.Repositories\Jibrary.Data.Repositories.csproj", "{8F22A30B-A074-4B85-9C32-9029A67D1A87}"
+EndProject
+<<<<<<< HEAD
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Data.Repositories.Tests", "Jibrary.Data.Repositories.Tests\Jibrary.Data.Repositories.Tests.csproj", "{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}"
 =======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Communications", "Jibrary.Communications\Jibrary.Communications.csproj", "{E3FAFBD9-0FB8-40AA-9685-2BF79050E9B0}"
->>>>>>> Stashed changes
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Communications.Tests", "Jibrary.Communications.Tests\Jibrary.Communications.Tests.csproj", "{703759E7-937C-4913-A0EA-2DF2180471F2}"
+>>>>>>> a39434cad1dc482e975b7543a8ee6d5e64e5906e
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,7 +63,6 @@ Global
 		{D089A42D-17CC-4F05-9A0B-1A17EEE5103F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D089A42D-17CC-4F05-9A0B-1A17EEE5103F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D089A42D-17CC-4F05-9A0B-1A17EEE5103F}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< Updated upstream
 		{B4FAD4F0-6671-442D-9B64-C42794E84936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4FAD4F0-6671-442D-9B64-C42794E84936}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4FAD4F0-6671-442D-9B64-C42794E84936}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,12 +71,21 @@ Global
 		{8F22A30B-A074-4B85-9C32-9029A67D1A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F22A30B-A074-4B85-9C32-9029A67D1A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F22A30B-A074-4B85-9C32-9029A67D1A87}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+		{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}.Release|Any CPU.Build.0 = Release|Any CPU
 =======
 		{E3FAFBD9-0FB8-40AA-9685-2BF79050E9B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3FAFBD9-0FB8-40AA-9685-2BF79050E9B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3FAFBD9-0FB8-40AA-9685-2BF79050E9B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3FAFBD9-0FB8-40AA-9685-2BF79050E9B0}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> Stashed changes
+		{703759E7-937C-4913-A0EA-2DF2180471F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{703759E7-937C-4913-A0EA-2DF2180471F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{703759E7-937C-4913-A0EA-2DF2180471F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{703759E7-937C-4913-A0EA-2DF2180471F2}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> a39434cad1dc482e975b7543a8ee6d5e64e5906e
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
