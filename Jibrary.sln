@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Data.Tests", "Jibra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Data.Repositories", "Jibrary.Data.Repositories\Jibrary.Data.Repositories.csproj", "{8F22A30B-A074-4B85-9C32-9029A67D1A87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jibrary.Data.Repositories.Tests", "Jibrary.Data.Repositories.Tests\Jibrary.Data.Repositories.Tests.csproj", "{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{8F22A30B-A074-4B85-9C32-9029A67D1A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F22A30B-A074-4B85-9C32-9029A67D1A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F22A30B-A074-4B85-9C32-9029A67D1A87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4751CCDE-BAB3-4FE5-B9D0-3405E0E5FE4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Jibrary.Data.Repositories
@@ -6,9 +7,7 @@ namespace Jibrary.Data.Repositories
 
     public interface IRepository<T> where T : IRepositoryEntry, new()
     {
- 
         event EventHandler<RepositoryOperationEventArgs> InsertEvent;
-        //event EventHandler<RepositoryOperationEventArgs> UpdateEvent;
         event EventHandler<RepositoryOperationEventArgs> DeleteEvent;
 
         //Create
@@ -26,5 +25,6 @@ namespace Jibrary.Data.Repositories
         //Miscellenous Operations
         void Count();
         void Exists(Predicate<T> predicate);
+        IQueryable<T> AsQueryable();
     }
 }
