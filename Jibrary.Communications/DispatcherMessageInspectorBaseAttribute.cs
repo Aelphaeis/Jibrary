@@ -9,7 +9,6 @@ namespace Jibrary.Communications
 {
     public abstract class DispatcherMessageInspectorBaseAttribute : Attribute, IDispatchMessageInspector, IServiceBehavior 
     {
-
         public event EventHandler<AfterReceiveRequestEventArgs> AfterReceiveRequestEvent;
         public event EventHandler<BeforeSendReplyEventArgs> BeforeSendReplyEvent;
 
@@ -31,7 +30,6 @@ namespace Jibrary.Communications
             return;
         }
         #endregion
-
         #region Implementation of IDispatchMessageInspector
         public virtual object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
         {
