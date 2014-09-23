@@ -14,6 +14,11 @@ namespace Jibrary.Communications
         public event EventHandler<AfterReceiveReplyEventArgs> AfterReceiveReplyEvent;
         public event EventHandler<BeforeSendRequestEventArgs> BeforeSendRequestEvent;
 
+        public virtual void BindToChannelFactory(ChannelFactory factory)
+        {
+            factory.Endpoint.EndpointBehaviors.Add(this);
+        }
+
         /// <summary>
         /// Calls the AfterRecievedReplyEvent and passes its parameters as members in the AfterRecievedReplyEventArgs
         ///

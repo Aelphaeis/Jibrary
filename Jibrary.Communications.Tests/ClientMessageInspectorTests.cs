@@ -63,8 +63,9 @@ namespace Jibrary.Communications.Tests
                 inspector.BeforeSendRequestEvent += (sender, args) => count++;
                 inspector.BeforeSendRequestEvent += (sender, args) => Console.WriteLine(args.Request.ToString());
                 inspector.AfterReceiveReplyEvent += (sender, args) => Console.WriteLine(args.Reply.ToString());
+
                 //Add the inspection mechanism to the clientFactory
-                clientFactory.Endpoint.EndpointBehaviors.Add(inspector);
+                inspector.BindToChannelFactory(clientFactory);
 
                 //Create a channel (a.k.a.) client.
                 var client = clientFactory.CreateChannel();
