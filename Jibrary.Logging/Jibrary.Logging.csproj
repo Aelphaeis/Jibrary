@@ -42,7 +42,7 @@
     <Compile Include="LogCache.cs" />
     <Compile Include="LoggedAttribute.cs" />
     <Compile Include="LogManager.cs" />
-    <Compile Include="LogManagerEventArgs.cs" />
+    <Compile Include="LogAddedEventArgs.cs" />
     <Compile Include="LogPriority.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

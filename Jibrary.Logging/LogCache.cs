@@ -5,108 +5,106 @@ using System.Text;
 
 namespace Jibrary.Logging
 {
-    public class LogCache : IDisposable
+    public class LogCache
     {
-        bool IsDisposed;
+        List<Log> logs;
         LogManager logManager;
-        SortedList<DateTime, Log> logs = new SortedList<DateTime, Log>();
+
+        public event EventHandler<LogAddedEventArgs> LogAddedEvent;
 
         internal LogCache(LogManager manager)
         {
+            logs = new List<Log>();
             logManager = manager;
-            IsDisposed = false;
         }
-
-        private void Add(Log Log, DateTime Key)
+        /// <summary>
+        /// Adds a log to the master log file. The log will not be added immediately if there are any live caches. To destory all caches use DisposeAllCaches().
+        /// </summary>
+        /// <param name="Log">The Log to add to the master file</param>
+        public virtual void Add(Log Log)
         {
-            try 
-            { 
-                logs.Add(Key, Log);
-            }
-            catch
-            {
-                Add(Log, Key.Add(TimeSpan.FromTicks(1L)));
-            }
-        }
-
-        public void Add(Log Log)
-        {
-            ValidateState();
-
-            if ((Log.Entry ?? String.Empty) == String.Empty)
+            if (String.IsNullOrEmpty(Log.Entry))
                 throw new ArgumentException("Log has no entry. All Logs should have entries");
+            Log.Hidden = true;
+            logs.Add(Log);
 
-            try
-            {
-                logs.Add(Log.Date, Log);
-            }
-            catch (ArgumentException)
-            {
-                Add(Log, Log.Date.Add(TimeSpan.FromTicks(1L)));
-            }
+
+            if (LogAddedEvent != null)
+                LogAddedEvent(this, new LogAddedEventArgs { Log = Log });
         }
-        public void Add(String Entry)
+        /// <summary>
+        /// Adds a log to the master file based on the text associated with the log you wish to store. The rest of the log will be automatically generated.
+        /// </summary>
+        /// <param name="Entry">Text you want in the log</param>
+        public virtual void Add(String Entry)
         {
-            ValidateState();
             Add(new Log(Entry));
         }
-        public void Add(String Entry, LogPriority Priority)
+
+        /// <summary>
+        /// Adds a log to the master file based on the text and priority associated with the log you wish to store. The rest of the log will be automatically generated.
+        /// </summary>
+        /// <param name="Entry">Text you want in the log</param>
+        /// <param name="Priority">The priority you wish the log to have</param>
+        public virtual void Add(String Entry, LogPriority Priority)
         {
-            ValidateState();
             Add(new Log(Entry, Priority));
         }
-        public void Add(String Entry, LogPriority Priority, bool IsError)
+
+        /// <summary>
+        /// Adds a log to the master file based on the text and priority associated with the log you wish to store. The rest of the log will be automatically generated.
+        /// You may also specify if this log is represents a malfunction.
+        /// </summary>
+        /// <param name="Entry">Text you want in the log</param>
+        /// <param name="Priority">The priority you wish the log to have</param>
+        /// <param name="IsError">If the log represents an error or not </param>
+        public virtual void Add(String Entry, LogPriority Priority, bool IsError)
         {
-            ValidateState();
             Add(new Log(Entry, Priority, IsError));
-
         }
-        public void Add(String Entry, LogPriority Priority, bool IsError, DateTime LogTime)
+
+        /// <summary>
+        /// Adds a log to the master file based on the text and priority associated with the log you wish to store. The rest of the log will be automatically generated.
+        /// You may also specify if this log is represents a malfunction. You can also specific the date under which the log occured.
+        /// </summary>
+        /// <param name="Entry">Text you want in the log</param>
+        /// <param name="Priority">The priority you wish the log to have</param>
+        /// <param name="IsError">If the log represents an error or not </param>
+        /// <param name="LogTime">The time the message is suppose to represent.</param>
+        public virtual void Add(String Entry, LogPriority Priority, bool IsError, DateTime LogTime)
         {
-            ValidateState();
             Add(new Log(Entry, Priority, IsError, LogTime));
-
         }
-        public void Add(Exception e, LogPriority priority = LogPriority.Highest)
+
+        /// <summary>
+        /// Adds a log to the master file based on an exception. This will set isError to true and the time of the exception to the moment it is added as a log.
+        /// </summary>
+        /// <param name="e">The exception to log</param>
+        /// <param name="priority">The priority to log the exception with, the default is Highest</param>
+        public virtual void Add(Exception e, LogPriority priority = LogPriority.Highest)
         {
             Add(new Log(e.ToString(), priority, true, DateTime.Now));
         }
 
+        /// <summary>
+        /// Get all logs currently stored.
+        /// </summary>
+        /// <returns>An Enumerable of Logs</returns>
         public IEnumerable<Log> GetLogs()
         {
-            return logs.Values;
+            return logs.ToList();
         }
 
         public void CommitCache()
         {
-            ValidateState();
-            foreach (var log in logs)
-                logManager.Add(log.Value);
+            logs.ForEach(p => p.Hidden = false);
             logs.Clear();
         }
 
         public void RollbackCache()
         {
-            ValidateState();
-            logs = new SortedList<DateTime, Log>();
-        }
-        protected virtual void Dispose(bool disposing)
-        {
-            if(disposing)
-                logManager.DisposeLogCache(this);
-
-            IsDisposed = true;
-        }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        void ValidateState()
-        {
-            if (IsDisposed)
-                throw new ObjectDisposedException("LogCache", "This object has been disposed and no longer in a valid state");
+            logs.ForEach(p => logManager.Logs.Remove(p));
+            logs.Clear();
         }
     }
 }

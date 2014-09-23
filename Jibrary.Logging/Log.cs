@@ -1,31 +1,14 @@
 ﻿using System;
 namespace Jibrary.Logging
 {
-    public class Log 
+    public class Log
     {
-        public DateTime Date
-        {
-            get;
-            set;
-        }
+        public DateTime Date { get; set; }
+        public String Entry { get; set; }
+        public Boolean IsError { get; set; }
+        public LogPriority Priority { get; set; }
 
-        public String Entry
-        {
-            get;
-            set;
-        }
-
-        public Boolean IsError
-        {
-            get;
-            set;
-        }
-
-        public LogPriority Priority
-        {
-            get;
-            set;
-        }
+        internal bool Hidden { get; set; }
 
 
         public Log()
@@ -35,13 +18,13 @@ namespace Jibrary.Logging
             Priority = LogPriority.Normal;
         }
 
-        public Log(String Entry) 
+        public Log(String Entry)
             : this()
         {
             this.Entry = Entry;
         }
 
-        public Log(String Entry, LogPriority Priority) 
+        public Log(String Entry, LogPriority Priority)
             : this(Entry)
         {
             this.Priority = Priority;
@@ -59,7 +42,7 @@ namespace Jibrary.Logging
             this.Date = LogTime;
         }
 
-        public Log(Exception e, LogPriority priority = LogPriority.Highest) 
+        public Log(Exception e, LogPriority priority = LogPriority.Highest)
             : this(e.ToString(), priority, true, DateTime.Now)
         {
         }

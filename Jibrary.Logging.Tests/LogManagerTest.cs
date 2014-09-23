@@ -25,8 +25,8 @@ namespace Jibrary.Logging.Tests
             LogManager manager = new LogManager();
             int token = 0;
 
-            LogManagerEventHandler callback = (s, e) => token++;
-            manager.LogAdded += callback;
+            EventHandler<LogAddedEventArgs> callback = (s, e) => token++;
+            manager.LogAddedEvent += callback;
 
             manager.Add(entryText);
 
@@ -43,8 +43,8 @@ namespace Jibrary.Logging.Tests
             LogManager manager = new LogManager();
             int token = 0;
 
-            LogManagerEventHandler callback = (s, e) => token++;
-            manager.LogAdded += callback;
+            EventHandler<LogAddedEventArgs> callback = (s, e) => token++;
+            manager.LogAddedEvent += callback;
 
             manager.Add(entryText);
             manager.Add(entryText);
@@ -63,8 +63,8 @@ namespace Jibrary.Logging.Tests
             LogManager manager = new LogManager();
             int token = 0;
 
-            LogManagerEventHandler callback = (s, e) => token++;
-            manager.LogAdded += callback;
+            EventHandler<LogAddedEventArgs> callback = (s, e) => token++;
+            manager.LogAddedEvent += callback;
 
             manager.Add(entryText, priority);
             Assert.AreEqual(token, 1);
@@ -81,8 +81,8 @@ namespace Jibrary.Logging.Tests
             LogManager manager = new LogManager();
             int token = 0;
 
-            LogManagerEventHandler callback = (s, e) => token++;
-            manager.LogAdded += callback;
+            EventHandler<LogAddedEventArgs> callback = (s, e) => token++;
+            manager.LogAddedEvent += callback;
 
             manager.Add(entryText, priority, false);
 
@@ -100,8 +100,8 @@ namespace Jibrary.Logging.Tests
             LogManager manager = new LogManager();
             int token = 0;
 
-            LogManagerEventHandler callback = (s, e) => token++;
-            manager.LogAdded += callback;
+            EventHandler<LogAddedEventArgs> callback = (s, e) => token++;
+            manager.LogAddedEvent += callback;
 
             manager.Add(entryText, priority, false, DateTime.MinValue);
 
@@ -117,8 +117,8 @@ namespace Jibrary.Logging.Tests
             LogManager manager = new LogManager();
 
             int token = 0;
-            LogManagerEventHandler callback = (s, e) => token++;
-            manager.LogAdded += callback;
+            EventHandler<LogAddedEventArgs> callback = (s, e) => token++;
+            manager.LogAddedEvent += callback;
 
             manager.Add(exception);
 
@@ -135,8 +135,8 @@ namespace Jibrary.Logging.Tests
             LogManager manager = new LogManager();
 
             int token = 0;
-            LogManagerEventHandler callback = (s, e) => token++;
-            manager.LogAdded += callback;
+            EventHandler<LogAddedEventArgs> callback = (s, e) => token++;
+            manager.LogAddedEvent += callback;
 
             manager.Add(new Log());
         }
@@ -150,8 +150,8 @@ namespace Jibrary.Logging.Tests
             LogManager manager = new LogManager();
 
             int token = 0;
-            LogManagerEventHandler callback = (s, e) => token++;
-            manager.LogAdded += callback;
+            EventHandler<LogAddedEventArgs> callback = (s, e) => token++;
+            manager.LogAddedEvent += callback;
 
             manager.Add(new Log(entryText));
 
@@ -176,33 +176,6 @@ namespace Jibrary.Logging.Tests
             manager.Add(l2);
         }
 
-        [TestMethod]
-        [Timeout(20)]
-        public void ManagerCreateLogCache()
-        {
-            LogManager manager = new LogManager();
-            var cache = manager.CreateLogCache();
-
-            manager.Add("test");
-            Assert.AreEqual(manager.GetLogs().Count(), 0);
-            
-            manager.DisposeAllCaches();
-            Assert.AreEqual(manager.GetLogs().Count(), 1);
-        }
-
-        [TestMethod]
-        [Timeout(20)]
-        public void ManagerCreateLogCache2()
-        {
-            LogManager manager = new LogManager();
-            var cache = manager.CreateLogCache();
-
-            manager.Add("test");
-            Assert.AreEqual(manager.GetLogs().Count(), 0);
-
-            cache.Dispose();
-            Assert.AreEqual(manager.GetLogs().Count(), 1);
-        }
 
         [TestMethod]
         [Timeout(20)]

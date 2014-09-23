@@ -12,34 +12,34 @@ namespace Jibrary.Logging.Tests
         public void LogCacheConstructorTest()
         {
             LogManager manager = new LogManager();
-            using (var cache = manager.CreateLogCache())
-                Assert.IsTrue(true);
+            var cache = manager.CreateLogCache();
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
         [Timeout(20)]
         [ExpectedException(typeof(ArgumentException))]
         public void LogCacheAddOverload1Failure()
-        {        
+        {
             LogManager manager = new LogManager();
-            using (var cache = manager.CreateLogCache())
-                cache.Add(new Log());
+            var cache = manager.CreateLogCache();
+            cache.Add(new Log());
         }
 
 
         [TestMethod]
-        [Timeout(20)]
+      //  [Timeout(20)]
         public void LogCacheAddOverlad1Success()
         {
             LogManager manager = new LogManager();
-            using(var cache = manager.CreateLogCache())
-            {
-                cache.Add("test");
-                Assert.AreEqual(cache.GetLogs().Count(), 1);
+            var cache = manager.CreateLogCache();
 
-                cache.CommitCache();
-                Assert.AreEqual(cache.GetLogs().Count(), 0);
-            }
+            cache.Add("test");
+            Assert.AreEqual(cache.GetLogs().Count(), 1);
+
+            cache.CommitCache();
+            Assert.AreEqual(cache.GetLogs().Count(), 0);
+
             Assert.AreEqual(manager.GetLogs().Count(), 1);
         }
 
@@ -48,14 +48,14 @@ namespace Jibrary.Logging.Tests
         public void LogCacheAddRollback1Success()
         {
             LogManager manager = new LogManager();
-            using (var cache = manager.CreateLogCache())
-            {
-                cache.Add("test");
-                Assert.AreEqual(cache.GetLogs().Count(), 1);
+            var cache = manager.CreateLogCache();
 
-                cache.RollbackCache();
-                Assert.AreEqual(cache.GetLogs().Count(), 0);
-            }
+            cache.Add("test");
+            Assert.AreEqual(cache.GetLogs().Count(), 1);
+
+            cache.RollbackCache();
+            Assert.AreEqual(cache.GetLogs().Count(), 0);
+
             Assert.AreEqual(manager.GetLogs().Count(), 0);
         }
 
@@ -64,20 +64,20 @@ namespace Jibrary.Logging.Tests
         public void LogCacheAddOverload1Failure2()
         {
             LogManager manager = new LogManager();
-            using (var cache = manager.CreateLogCache())
-            {
-                var l1 = new Log();
-                var l2 = new Log();
+            var cache = manager.CreateLogCache();
 
-                string entryText = "This is some entry texts";
-                l1.Entry = entryText;
-                l2.Entry = entryText;
+            var l1 = new Log();
+            var l2 = new Log();
 
-                cache.Add(l1);
-                cache.Add(l2);
+            string entryText = "This is some entry texts";
+            l1.Entry = entryText;
+            l2.Entry = entryText;
 
-                cache.CommitCache();
-            }
+            cache.Add(l1);
+            cache.Add(l2);
+
+            cache.CommitCache();
+
         }
     }
 }

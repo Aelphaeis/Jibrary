@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Jibrary.Logging
 {
-    public delegate void LogManagerEventHandler(object sender, LogManagerEventArgs e);
-    public class LogManagerEventArgs : EventArgs
+    public class LogAddedEventArgs : EventArgs
     {
         public Log Log
         {
