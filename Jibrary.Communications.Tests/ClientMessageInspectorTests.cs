@@ -59,7 +59,7 @@ namespace Jibrary.Communications.Tests
                 //Create an inspector and subscribe to it, we know it is hit
                 //when count is not equal to 0;
                 int count = 0;
-                var inspector = new ClientMessageInspectorBase();
+                var inspector = new ClientInspector();
                 inspector.BeforeSendRequestEvent += (sender, args) => count++;
                 inspector.BeforeSendRequestEvent += (sender, args) => Console.WriteLine(args.Request.ToString());
                 inspector.AfterReceiveReplyEvent += (sender, args) => Console.WriteLine(args.Reply.ToString());

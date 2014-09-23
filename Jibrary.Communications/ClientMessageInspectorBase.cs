@@ -9,7 +9,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel;
 namespace Jibrary.Communications
 {
-    public class ClientMessageInspectorBase: IClientMessageInspector, IEndpointBehavior
+    public abstract class ClientMessageInspectorBase: IClientMessageInspector, IEndpointBehavior
     {
         public event EventHandler<AfterReceiveReplyEventArgs> AfterReceiveReplyEvent;
         public event EventHandler<BeforeSendRequestEventArgs> BeforeSendRequestEvent;

@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ClientMessageInspectorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ClientInspector.cs" />
     <Compile Include="Resources\TestService.cs" />
   </ItemGroup>
   <ItemGroup>
