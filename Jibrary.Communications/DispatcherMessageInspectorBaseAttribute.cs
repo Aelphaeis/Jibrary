@@ -7,7 +7,7 @@ using System.ServiceModel.Description;
 
 namespace Jibrary.Communications
 {
-    public abstract class MessageHandlerBehaviorBase : Attribute, IDispatchMessageInspector, IServiceBehavior 
+    public abstract class DispatcherMessageInspectorBaseAttribute : Attribute, IDispatchMessageInspector, IServiceBehavior 
     {
 
         public event EventHandler<AfterReceiveRequestEventArgs> AfterReceiveRequestEvent;

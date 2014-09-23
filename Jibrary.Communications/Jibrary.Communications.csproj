@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="AfterReceiveRequestEventArgs.cs" />
     <Compile Include="BeforeSendReplyEventArgs.cs" />
-    <Compile Include="MessageHandlerBehaviorBase.cs" />
+    <Compile Include="DispatcherMessageInspectorBaseAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
