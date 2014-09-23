@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Jibrary.Data
+namespace Jibrary.Data.Repositories
 {
     public class RepositoryOperationEventArgs : EventArgs
     {

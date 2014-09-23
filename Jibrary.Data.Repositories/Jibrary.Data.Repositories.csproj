@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CE9D26D1-11CE-4FF9-997D-A071B4CA14DF}</ProjectGuid>
+    <ProjectGuid>{8F22A30B-A074-4B85-9C32-9029A67D1A87}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jibrary.Data</RootNamespace>
-    <AssemblyName>Jibrary.Data</AssemblyName>
+    <RootNamespace>Jibrary.Data.Repositories</RootNamespace>
+    <AssemblyName>Jibrary.Data.Repositories</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,26 +28,23 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDbConnectionExtensions.cs" />
-    <Compile Include="IQueryResult.cs" />
-    <Compile Include="IQueryResultColumn.cs" />
-    <Compile Include="IQueryResultTuple.cs" />
-    <Compile Include="QueryResult.cs" />
-    <Compile Include="QueryResultColumn.cs" />
-    <Compile Include="QueryResultTuple.cs" />
-    <Compile Include="Randomizer.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="IRepositoryEntry.cs" />
+    <Compile Include="MemoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryEntryBase.cs" />
+    <Compile Include="RepositoryOperationEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
