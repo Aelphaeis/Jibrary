@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Jibrary.Miscellaneous
 {
     public sealed class Singleton<T>
     {
-        /// <summary>
-        /// The Call by which we find the instance of the class wrapped by the Singleton.
-        /// </summary>
         public static T Instance
         {
             get 
@@ -24,22 +26,21 @@ namespace Jibrary.Miscellaneous
             } 
         }
 
-        /// <summary>
-        /// The Singleton's, by creating it here and only exposing a Get property we effectively make this read only once it has been instiantaited. 
-        /// </summary>
         internal static T instance;
-
-        /// <summary>
-        /// Used to check if the singleton's Instance has been assigned yet
-        /// </summary>
         static bool instantiated;
 
-
         /// <summary>
-        /// This allows us to manually set the value of Instance if it has not been set yet.
+        /// This will allow classes with default constructors to be instiantated immediately;
         /// </summary>
-        /// <param name="inst">The Instance we would like to use for the singleton</param>
-        /// <returns>The instance assigned to the Singleton</returns>
+        //static Singleton()
+        //{
+        //    //If the class has the default constructor then crate it
+        //    { 
+        //        instantiated = true;
+        //    }
+        //    //If not the class instance implicitly be default(T)
+        //}
+
         public static T Instantiate(T inst)
         {
             if (instantiated)

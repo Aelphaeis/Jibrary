@@ -30,7 +30,6 @@ namespace Jibrary.Data
             using (var reader = Comm.ExecuteReader(CommandBehavior.KeyInfo))
                 return new QueryResult(reader);
         }
-
         public static int ExecuteNonQuery(this IDbConnection conn, String CommandText, params object[] Arguments)
         {
             using (var Comm = conn.CreateCommand(CommandText, Arguments))
