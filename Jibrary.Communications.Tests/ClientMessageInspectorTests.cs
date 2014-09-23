@@ -65,7 +65,7 @@ namespace Jibrary.Communications.Tests
                 inspector.AfterReceiveReplyEvent += (sender, args) => Console.WriteLine(args.Reply.ToString());
 
                 //Add the inspection mechanism to the clientFactory
-                inspector.BindToChannelFactory(clientFactory);
+                inspector.ApplyBehaviorToChannelFactory(clientFactory);
 
                 //Create a channel (a.k.a.) client.
                 var client = clientFactory.CreateChannel();
