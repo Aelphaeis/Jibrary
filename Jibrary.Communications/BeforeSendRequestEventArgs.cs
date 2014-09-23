@@ -1,14 +1,15 @@
 ﻿using System;
-using System.ServiceModel;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.ServiceModel.Channels;
-
+using System.ServiceModel;
 namespace Jibrary.Communications
 {
-    public class AfterReceiveRequestEventArgs : EventArgs
+    public class BeforeSendRequestEventArgs : EventArgs
     {
         public virtual Message Request { get; set; }
         public virtual IClientChannel Channel { get; set; }
-        public virtual InstanceContext InstanceContext { get; set; }
-
     }
 }

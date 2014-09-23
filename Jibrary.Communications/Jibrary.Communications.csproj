@@ -40,8 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AfterReceiveReplyEventArgs.cs" />
     <Compile Include="AfterReceiveRequestEventArgs.cs" />
     <Compile Include="BeforeSendReplyEventArgs.cs" />
+    <Compile Include="BeforeSendRequestEventArgs.cs" />
+    <Compile Include="ClientMessageInspectorBaseAttribute.cs" />
     <Compile Include="DispatcherMessageInspectorBaseAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
