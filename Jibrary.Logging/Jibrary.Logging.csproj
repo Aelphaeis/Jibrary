@@ -40,7 +40,6 @@
   <ItemGroup>
     <Compile Include="Log.cs" />
     <Compile Include="LogCache.cs" />
-    <Compile Include="LoggedAttribute.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="LogAddedEventArgs.cs" />
     <Compile Include="LogPriority.cs" />
