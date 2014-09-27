@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
-namespace Jibrary.Logging.Tests
+namespace Jibrary.Diagnostics.Tests
 {
     [TestClass]
     public class LogCacheTest
@@ -28,7 +28,7 @@ namespace Jibrary.Logging.Tests
 
 
         [TestMethod]
-      //  [Timeout(20)]
+        [Timeout(20)]
         public void LogCacheAddOverlad1Success()
         {
             LogManager manager = new LogManager();

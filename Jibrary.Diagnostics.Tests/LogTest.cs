@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace Jibrary.Logging.Tests
+namespace Jibrary.Diagnostics.Tests
 {
     [TestClass]
     public class LogTest

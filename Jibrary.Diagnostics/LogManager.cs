@@ -1,37 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 
-namespace Jibrary.Logging
+
+namespace Jibrary.Diagnostics
 {
-    public class LogCache
+    public class LogManager
     {
-        List<Log> logs;
-        LogManager logManager;
+        /// <summary>
+        /// Contains a global instance which stores all logs.
+        /// </summary>
+        internal List<Log> Logs;
 
+        /// <summary>
+        /// An Event called when a Log is added. 
+        /// </summary>
         public event EventHandler<LogAddedEventArgs> LogAddedEvent;
 
-        internal LogCache(LogManager manager)
+        public LogManager()
         {
-            logs = new List<Log>();
-            logManager = manager;
+            Logs = new List<Log>();
         }
+
         /// <summary>
         /// Adds a log to the master log file. The log will not be added immediately if there are any live caches. To destory all caches use DisposeAllCaches().
         /// </summary>
         /// <param name="Log">The Log to add to the master file</param>
-        public virtual void Add(Log Log)
+        public virtual void Add(Log Log) 
         {
             if (String.IsNullOrEmpty(Log.Entry))
                 throw new ArgumentException("Log has no entry. All Logs should have entries");
-            Log.Hidden = true;
-            logs.Add(Log);
-
-
+            Logs.Add(Log);
             if (LogAddedEvent != null)
                 LogAddedEvent(this, new LogAddedEventArgs { Log = Log });
         }
+
         /// <summary>
         /// Adds a log to the master file based on the text associated with the log you wish to store. The rest of the log will be automatically generated.
         /// </summary>
@@ -50,7 +53,7 @@ namespace Jibrary.Logging
         {
             Add(new Log(Entry, Priority));
         }
-
+   
         /// <summary>
         /// Adds a log to the master file based on the text and priority associated with the log you wish to store. The rest of the log will be automatically generated.
         /// You may also specify if this log is represents a malfunction.
@@ -85,26 +88,34 @@ namespace Jibrary.Logging
         {
             Add(new Log(e.ToString(), priority, true, DateTime.Now));
         }
+        
+        /// <summary>
+        /// Creates a cache and registers it with the Log Manager. Logs can be stored and this cache and all of the logs can either be discarded or added to the Log Manager. 
+        /// 
+        /// Note that  logs added to the log manager while a cache is still alive will not be visible until all caches are closed.
+        /// </summary>
+        /// <example>
+        /// using (var Cache = Logs.CreateLogCache())
+        /// {
+        ///     Cache.Add(new Log("A Log Was Created"));
+        ///     Cache.CommitCache();
+        /// }
+        /// </example>
+        /// <returns>Created Instance the Log Cache</returns>
+        public LogCache CreateLogCache()
+        {
+            var cache = new LogCache(this);
+            cache.LogAddedEvent += (sender, args) => Logs.Add(args.Log);
+            return cache;
+        }
 
         /// <summary>
         /// Get all logs currently stored.
         /// </summary>
         /// <returns>An Enumerable of Logs</returns>
-        public IEnumerable<Log> GetLogs()
+        public IEnumerable<Log> GetLogs() 
         {
-            return logs.ToList();
-        }
-
-        public void CommitCache()
-        {
-            logs.ForEach(p => p.Hidden = false);
-            logs.Clear();
-        }
-
-        public void RollbackCache()
-        {
-            logs.ForEach(p => logManager.Logs.Remove(p));
-            logs.Clear();
+            return Logs.Where(p => !p.Hidden);
         }
     }
 }

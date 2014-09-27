@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Jibrary.Logging
+namespace Jibrary.Diagnostics
 {
     public class Log
     {

@@ -1,4 +1,4 @@
-﻿namespace Jibrary.Logging
+﻿namespace Jibrary.Diagnostics
 {
     /// <summary>
     /// Used to describe how important a particular log is

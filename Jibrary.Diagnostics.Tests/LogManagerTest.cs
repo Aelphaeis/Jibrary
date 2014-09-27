@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Jibrary.Logging.Tests
+namespace Jibrary.Diagnostics.Tests
 {
     [TestClass]
     public class LogManagerTest
