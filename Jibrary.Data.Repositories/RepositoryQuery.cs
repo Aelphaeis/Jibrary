@@ -23,13 +23,17 @@ namespace Jibrary.Data.Repositories
         }
 
         public RepositoryQuery(IQueryProvider provider, Expression expression) 
-            : this(provider)
         {
+            if (provider == null)
+                throw new ArgumentNullException("provider");
+
+          
             if (expression == null)
                 throw new ArgumentNullException("expression");
 
             if (!typeof(IQueryable<T>).IsAssignableFrom(expression.Type))
                 throw new ArgumentOutOfRangeException("expression");
+            Provider = provider;
             Expression = expression;
         }
 

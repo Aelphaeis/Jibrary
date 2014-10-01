@@ -7,6 +7,7 @@ using Jibrary.Data.Tests.Resources;
 using Jibrary.Communications;
 using System.Linq.Expressions;
 using System.Collections.Generic;
+using Jibrary.Data.Repositories;
 namespace Jibrary.Data.Tests
 {
     [TestClass]
@@ -67,7 +68,7 @@ namespace Jibrary.Data.Tests
             using (ChannelFactory<ITestService> factory = new ChannelFactory<ITestService>(new BasicHttpBinding(), hostAddress))
             {
                 //Set up the message inspector
-                inspector.AfterReceiveRequestEvent += (sender, args) => counter.Add(2) ;
+                inspector.AfterReceiveRequestEvent += (sender, args) => counter.Add(2);
                 inspector.AfterReceiveReplyEvent += (sender, args) => counter.Add(4);
                 inspector.BeforeSendRequestEvent += (sender, args) => counter.Add(1);
                 inspector.BeforeSendReplyEvent += (sender, args) => counter.Add(3);
@@ -132,7 +133,7 @@ namespace Jibrary.Data.Tests
 
                 //Open Client and make call
                 var channel = factory.CreateChannel();
-                
+
                 var result = channel.QueryList()
                     .Cast<Int32>()
                     .Where(p => p > 3)
@@ -194,7 +195,11 @@ namespace Jibrary.Data.Tests
         [TestMethod]
         public void RepoQueryTest1()
         {
-
+            InMemoryRepository<Int32> Repo = new InMemoryRepository<Int32>();
+            Repo.AddRange(new Int32[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+            var queryable = Repo.AsQueryable();
+            var value = queryable.Where(p => p == 1).Count();
+            Assert.AreEqual(1, value);
         }
     }
 }
