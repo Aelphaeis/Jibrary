@@ -6,101 +6,97 @@ using System.Threading.Tasks;
 
 namespace Jibrary.Data.Repositories
 {
-    //public class InMemoryRepository<T> : IRepository<T> where T : IRepositoryEntry, new()
-    //{
-    //    //RepositoryEntryBase,
-    //    public event EventHandler<RepositoryOperationEventArgs> InsertEvent;
-    //    public event EventHandler<RepositoryOperationEventArgs> UpdateEvent;
-    //    public event EventHandler<RepositoryOperationEventArgs> DeleteEvent;
+    public class InMemoryRepository<T> : IRepository<T>
+    {
 
-    //    public IList<String> PrimaryKeys { get; protected set; }
-    //    List<T> data;
+        public event EventHandler<RepositoryPreOperationEventArgs> BeforeInsertEvent;
 
-    //    public InMemoryRepository()
-    //    {
-    //        PrimaryKeys = new List<String>(new T().GetPrimaryKeys());
-    //        data = new List<T>();
-    //    }
+        public event EventHandler<RepositoryPostOperationEventArgs> AfterInsertEvent;
 
-    //    public void Insert(T Entry)
-    //    {
-    //        if (Get(Entry) != null)
-    //            throw new Exception("Duplicate Entry - Identical Key already exists");
-    //        data.Add(Entry);
-    //        if (InsertEvent != null)
-    //            InsertEvent(this, new RepositoryOperationEventArgs() { Entry = Entry });
-    //    }
+        public event EventHandler<RepositoryPreOperationEventArgs> BeforeDeleteEvent;
 
-    //    public void Update(T Entry)
-    //    {
-    //        if (Entry == null)
-    //            throw new NullReferenceException();
+        public event EventHandler<RepositoryPostOperationEventArgs> AfterDeleteEvent;
 
-    //        var obj = Get(Entry);
-    //        if (obj == null)
-    //            throw new Exception("Object does not exist");
+        List<T> data;
 
-    //        int i = data.IndexOf(obj);
-    //        data.RemoveAt(i);
-    //        data.Insert(i, Entry);
+        public InMemoryRepository()
+        {
+            data = new List<T>();
+        }
 
-    //        if (UpdateEvent != null)
-    //            UpdateEvent(this, new RepositoryOperationEventArgs() { Entry = obj });
-    //    }
+        public T Add(T entry)
+        {
+            var preOpArgs = new RepositoryPreOperationEventArgs { Cancel = false, Entry = entry };
+            if (BeforeInsertEvent != null)
+                BeforeInsertEvent(this, preOpArgs);
 
-    //    public void Delete(Predicate<T> predicate)
-    //    {
-    //        data.RemoveAll(predicate);
-    //        if (DeleteEvent != null)
-    //            DeleteEvent(this, new RepositoryOperationEventArgs() { Entry = null });
-    //    }
+            if (preOpArgs.Cancel)
+                return default(T);
 
-    //    public bool Exists(Predicate<T> predicate)
-    //    {
-    //        return data.Exists(predicate);
-    //    }
+            data.Add(entry);
 
-    //    public T Retrieve(Predicate<T> predicate)
-    //    {
-    //        return data.FirstOrDefault(new Func<T, bool>(predicate));
-    //    }
+            if (AfterInsertEvent != null)
+                AfterInsertEvent(this, new RepositoryPostOperationEventArgs { Entry = entry });
 
-    //    public IEnumerable<T> RetrieveAll()
-    //    {
-    //        return data;
-    //    }
+            return entry;
+        }
 
-    //    public int Count()
-    //    {
-    //        return data.Count;
-    //    }
+        public IEnumerable<T> AddRange(IEnumerable<T> entries)
+        {
+            foreach (var entry in entries)
+                Add(entry);
+            return entries;
+        }
 
-    //    public int Count(Predicate<T> predicate)
-    //    {
-    //        return data.Count(new Func<T, bool>(predicate));
-    //    }
+        public T Find(Predicate<T> condition)
+        {
+            return data.Find(condition);
+        }
 
-    //    T Get(T Entry)
-    //    {
-    //        //Returns Entry based on Identical PrimaryKeys
-    //        Type entryType = typeof(T);
-    //        var KeyPropertyInfo = entryType.GetProperties().Where(p => PrimaryKeys.Any(p2 => p2 == p.Name));
-    //        foreach (var v in data)
-    //        {
-    //            //Assume the objects are identical by default to prevent false positives.
-    //            Boolean AlreadyExists = true;
-    //            foreach (var property in KeyPropertyInfo)
-    //                if (!property.GetValue(v).Equals(property.GetValue(Entry)))
-    //                    AlreadyExists = false;
-    //            if (AlreadyExists)
-    //                return v;
-    //        }
-    //        return default(T);
-    //    }
+        public IEnumerable<T> FindAll(Predicate<T> condition)
+        {
+            return data.FindAll(condition);
+        }
 
-    //    public IList<string> GetPrimaryKeys()
-    //    {
-    //        return PrimaryKeys;
-    //    }
-    //}
+        public void Remove(Predicate<T> condition)
+        {
+            var entry = Find(condition);
+
+            var preOpArgs = new RepositoryPreOperationEventArgs { Cancel = false, Entry = entry };
+            if (BeforeDeleteEvent != null)
+                BeforeDeleteEvent(this, preOpArgs);
+
+            if (preOpArgs.Cancel)
+                return;
+
+
+            data.Remove(entry);
+            
+            if (AfterDeleteEvent != null)
+                AfterDeleteEvent(this, new RepositoryPostOperationEventArgs { Entry = entry });
+        }
+
+        public void RemoveAll(Predicate<T> condition)
+        {
+            var entries = FindAll(condition);
+
+            foreach (var entry in entries)
+                Remove(p => p.Equals(entry));
+        }
+
+        public int Count()
+        {
+            return data.Count;
+        }
+
+        public bool Exists(Predicate<T> predicate)
+        {
+            return data.Exists(predicate);
+        }
+
+        public IQueryable<T> AsQueryable()
+        {
+           return new RepositoryQuery<T>(new RepositoryQueryProvider());
+        }
+    }
 }

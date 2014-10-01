@@ -4,26 +4,29 @@ using System.Collections.Generic;
 
 namespace Jibrary.Data.Repositories
 {
-    public interface IRepository<T> where T : IRepositoryEntry, new()
+    public interface IRepository<T> 
     {
-        event EventHandler<RepositoryOperationEventArgs> InsertEvent;
-        event EventHandler<RepositoryOperationEventArgs> DeleteEvent;
+        event EventHandler<RepositoryPreOperationEventArgs> BeforeInsertEvent;
+        event EventHandler<RepositoryPostOperationEventArgs> AfterInsertEvent;
+
+        event EventHandler<RepositoryPreOperationEventArgs> BeforeDeleteEvent;
+        event EventHandler<RepositoryPostOperationEventArgs> AfterDeleteEvent;
 
         //Create
         T Add(T entry);
-        T AddRange(IEnumerable<T> entries);
+        IEnumerable<T> AddRange(IEnumerable<T> entries);
 
         //Read
-        void Find(Predicate<T> condition);
-        void FindAll(Predicate<T> condition);
+        T Find(Predicate<T> condition);
+        IEnumerable<T> FindAll(Predicate<T> condition);
 
         //Delete
         void Remove(Predicate<T> condition);
         void RemoveAll(Predicate<T> condition);
 
         //Miscellenous Operations
-        void Count();
-        void Exists(Predicate<T> predicate);
+        int Count();
+        bool Exists(Predicate<T> predicate);
         IQueryable<T> AsQueryable();
     }
 }

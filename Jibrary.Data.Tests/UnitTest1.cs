@@ -192,8 +192,9 @@ namespace Jibrary.Data.Tests
         }
 
         [TestMethod]
-        public void IQueryableServiceTest3()
+        public void RepoQueryTest1()
         {
+
         }
     }
 }

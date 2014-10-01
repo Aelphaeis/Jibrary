@@ -40,12 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRepository.cs" />
-    <Compile Include="IRepositoryEntry.cs" />
     <Compile Include="MemoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryProviderBase.cs" />
     <Compile Include="RepositoryEntryBase.cs" />
-    <Compile Include="RepositoryOperationEventArgs.cs" />
+    <Compile Include="RepositoryPostOperationEventArgs.cs" />
+    <Compile Include="RepositoryPreOperationEventArgs.cs" />
     <Compile Include="RepositoryQuery.cs" />
     <Compile Include="RepositoryQueryProvider.cs" />
     <Compile Include="TypeSystem.cs" />
