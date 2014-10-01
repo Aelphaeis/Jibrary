@@ -25,5 +25,11 @@ namespace Jibrary.Data.Tests.Resources
         {
             return true;
         }
+
+
+        public object Query(IQueryable queryable)
+        {
+            return null;
+        }
     }
 }

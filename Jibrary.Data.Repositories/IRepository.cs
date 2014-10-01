@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace Jibrary.Data.Repositories
 {
-
     public interface IRepository<T> where T : IRepositoryEntry, new()
     {
         event EventHandler<RepositoryOperationEventArgs> InsertEvent;

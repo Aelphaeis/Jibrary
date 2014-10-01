@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jibrary.Data.Tests.Resources;
 using Jibrary.Communications;
+using System.Linq.Expressions;
 using System.Collections.Generic;
 namespace Jibrary.Data.Tests
 {
@@ -137,13 +138,62 @@ namespace Jibrary.Data.Tests
                     .Where(p => p > 3)
                     .ToList()
                     .Count();
-                
+
                 Assert.AreEqual(3, result);
 
                 //clean up the test.
                 factory.Close();
                 host.Close();
             }
+        }
+
+        [TestMethod]
+        public void IQueryableServiceTest2()
+        {
+            MessageInspector inspector = new MessageInspector();
+            String nl = String.Format("{0}{0}{0}", Environment.NewLine);
+            String hostAddress = "http://localhost:24573/JibraryDataTests";
+
+            using (ServiceHost host = new ServiceHost(typeof(TestService)))
+            using (ChannelFactory<ITestService> factory = new ChannelFactory<ITestService>(new BasicHttpBinding(), hostAddress))
+            {
+                //Set up the message inspector
+                inspector.AfterReceiveReplyEvent += (sender, args) => Console.WriteLine(args.Reply.ToString() + nl);
+                inspector.BeforeSendRequestEvent += (sender, args) => Console.WriteLine(args.Request.ToString() + nl);
+
+                //Attract inspector to host and cliemt
+                inspector.ApplyToChannelFactory(factory);
+                inspector.ApplyToServiceHost(host);
+
+                //Configure and open service host
+                host.AddServiceEndpoint(typeof(ITestService), new BasicHttpBinding(), hostAddress);
+                host.BeginOpen(ar => host.EndOpen(ar), null);
+                while (host.State != CommunicationState.Opened)
+                    Thread.Yield();
+
+                //Open Client and make call
+                var channel = factory.CreateChannel();
+
+                List<Int32> list = new List<Int32>();
+                IQueryable<Int32> qList = list.AsQueryable();
+                qList.Where(p => p > 3);
+                var result = channel.QueryList()
+                    .Cast<Int32>()
+                    .Where(p => p > 3)
+                    .ToList()
+                    .Count();
+
+                Assert.AreEqual(3, result);
+
+                //clean up the test.
+                factory.Close();
+                host.Close();
+            }
+        }
+
+        [TestMethod]
+        public void IQueryableServiceTest3()
+        {
         }
     }
 }
