@@ -46,14 +46,14 @@
     <Compile Include="IQueryResultColumn.cs" />
     <Compile Include="IQueryResultTuple.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="IRepositoryEntry.cs" />
+    <Compile Include="MemoryRepository.cs" />
     <Compile Include="QueryResult.cs" />
     <Compile Include="QueryResultColumn.cs" />
     <Compile Include="QueryResultTuple.cs" />
     <Compile Include="Randomizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryEntryBase.cs" />
-    <Compile Include="RepositoryOperationEventArgs.cs" />
+    <Compile Include="RepositoryPostOperationEventArgs.cs" />
+    <Compile Include="RepositoryPreOperationEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

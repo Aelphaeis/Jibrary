@@ -7,9 +7,8 @@ using System.Linq.Expressions;
 using System.Reflection;
 namespace Jibrary.Data.Repositories
 {
-    public abstract class QueryProviderBase : IQueryProvider 
+    public abstract class RepositoryQueryProviderBase : IQueryProvider 
     {
-        protected QueryProviderBase() { }
 
         public virtual IQueryable CreateQuery<T>()
         {
@@ -33,9 +32,19 @@ namespace Jibrary.Data.Repositories
 
         public virtual T Execute<T>(Expression expression)
         {
-            return (T)Execute(expression);
+            var LambdaExp = Expression.Lambda<Func<T>>(expression);
+            var compiledExp = LambdaExp.Compile();
+            return compiledExp.Invoke();
         }
 
-        public abstract object Execute(Expression expression);
+        public virtual object Execute(Expression expression)
+        {
+            var elementType = TypeSystem.GetElementType(expression.Type);
+            var curr = MethodInfo.GetCurrentMethod();
+            var exe = GetType().GetMethods()
+                .First(p => p.Name == curr.Name && p.IsGenericMethod)
+                .MakeGenericMethod(expression.Type);
+            return exe.Invoke(this, new Object[] { expression });
+        }
     }
 }

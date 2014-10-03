@@ -198,9 +198,7 @@ namespace Jibrary.Data.Tests
             InMemoryRepository<Int32> Repo = new InMemoryRepository<Int32>();
             Repo.AddRange(new Int32[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
             var queryable = Repo.AsQueryable();
-            //Assert.AreEqual(10, queryable.Count());
             Assert.AreEqual(3, queryable.Where(p => p <= 3).Count());
-
         }
     }
 }

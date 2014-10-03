@@ -38,14 +38,14 @@ namespace Jibrary.Data.Repositories
             Expression = expression;
         }
 
-        public RepositoryQuery(IQueryProvider provider, IEnumerable<T> source)
+        public RepositoryQuery(IQueryProvider provider, IQueryable<T> source)
         {
             if (provider == null)
                 throw new ArgumentNullException("provider");
             if (source == null)
                 throw new ArgumentNullException("source");
 
-            Expression = Expression.Constant(source.AsQueryable());
+            Expression = Expression.Constant(source);
             Provider = provider;
         }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jibrary.Data.Repositories
+namespace Jibrary.Data
 {
     public class InMemoryRepository<T> : IRepository<T>
     {
