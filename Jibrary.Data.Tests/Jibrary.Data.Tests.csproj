@@ -57,6 +57,7 @@
     <Compile Include="Resources\ITestService.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="InMemoryRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jibrary.Communications\Jibrary.Communications.csproj">
