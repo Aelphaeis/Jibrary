@@ -63,10 +63,6 @@
       <Project>{e3fafbd9-0fb8-40aa-9685-2bf79050e9b0}</Project>
       <Name>Jibrary.Communications</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Jibrary.Data.Repositories\Jibrary.Data.Repositories.csproj">
-      <Project>{8f22a30b-a074-4b85-9c32-9029a67d1a87}</Project>
-      <Name>Jibrary.Data.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Jibrary.Data\Jibrary.Data.csproj">
       <Project>{ce9d26d1-11ce-4ff9-997d-a071b4ca14df}</Project>
       <Name>Jibrary.Data</Name>

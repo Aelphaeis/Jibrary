@@ -7,7 +7,6 @@ using Jibrary.Data.Tests.Resources;
 using Jibrary.Communications;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using Jibrary.Data.Repositories;
 namespace Jibrary.Data.Tests
 {
     [TestClass]
@@ -199,6 +198,7 @@ namespace Jibrary.Data.Tests
             Repo.AddRange(new Int32[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
             var queryable = Repo.AsQueryable();
             Assert.AreEqual(3, queryable.Where(p => p <= 3).Count());
+
         }
     }
 }
