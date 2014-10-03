@@ -13,11 +13,11 @@ namespace Jibrary.Data.Repositories
         public virtual IQueryProvider Provider { get; private set; }
         Type IQueryable.ElementType{ get { return typeof(T); } }
 
+
         public RepositoryQuery(IQueryProvider provider)
         {
             if (provider == null)
                 throw new ArgumentNullException("provider");
-
             Provider = provider;
             Expression = Expression.Constant(this);
         }
@@ -33,8 +33,20 @@ namespace Jibrary.Data.Repositories
 
             if (!typeof(IQueryable<T>).IsAssignableFrom(expression.Type))
                 throw new ArgumentOutOfRangeException("expression");
+
             Provider = provider;
             Expression = expression;
+        }
+
+        public RepositoryQuery(IQueryProvider provider, IEnumerable<T> source)
+        {
+            if (provider == null)
+                throw new ArgumentNullException("provider");
+            if (source == null)
+                throw new ArgumentNullException("source");
+
+            Expression = Expression.Constant(source.AsQueryable());
+            Provider = provider;
         }
 
         public virtual IEnumerator<T> GetEnumerator()

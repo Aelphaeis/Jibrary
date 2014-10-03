@@ -96,7 +96,7 @@ namespace Jibrary.Data.Repositories
 
         public IQueryable<T> AsQueryable()
         {
-           return new RepositoryQuery<T>(new RepositoryQueryProvider());
+           return new RepositoryQuery<T>(new RepositoryQueryProvider(), data);
         }
     }
 }
