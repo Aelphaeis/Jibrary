@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ServiceModel.Channels;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 namespace Jibrary.Communications
 {
     public class BeforeSendRequestEventArgs : EventArgs

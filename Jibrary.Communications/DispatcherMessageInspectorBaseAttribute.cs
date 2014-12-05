@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using System.Collections.ObjectModel;
-using System.ServiceModel.Dispatcher;
 using System.ServiceModel.Description;
+using System.ServiceModel.Dispatcher;
 
 namespace Jibrary.Communications
 {

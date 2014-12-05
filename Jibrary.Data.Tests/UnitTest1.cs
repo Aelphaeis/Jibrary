@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Jibrary.Data.Tests.Resources;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
 using System.Threading;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Jibrary.Data.Tests.Resources;
-using Jibrary.Communications;
-using System.Linq.Expressions;
-using System.Collections.Generic;
 namespace Jibrary.Data.Tests
 {
     [TestClass]

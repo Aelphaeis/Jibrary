@@ -1,9 +1,8 @@
-﻿using System;
-using System.ServiceModel;
+﻿using Jibrary.Communications.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Jibrary.Communications.Tests.Resources;
+using System;
+using System.ServiceModel;
 using System.Threading;
-using Jibrary.Communications;
 namespace Jibrary.Communications.Tests
 {
     [TestClass]

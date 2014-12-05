@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Xml;
-using System.Text;
+using System.Xml.Serialization;
+
 namespace Jibrary.Miscellaneous
 {
     public static class StringSerializer
